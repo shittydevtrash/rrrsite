@@ -10,7 +10,7 @@ body {
     background-color: #121a1f;
     color: #e6e6e6;
     line-height: 1.6;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1200x800/234/111?text=Dark+Background');
+    background-image: url('media/bg.png');
     background-size: cover;
     background-attachment: fixed;
 }
@@ -25,7 +25,26 @@ body {
 header {
     padding: 2rem 0;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+    gap: 2rem;
+}
+
+.logo {
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.logo img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
 }
 
 .header-buttons {
@@ -36,6 +55,7 @@ header {
 }
 
 .btn {
+    font-family: 'Staatliches', cursive;
     display: inline-block;
     padding: 0.75rem 1.5rem;
     border-radius: 2rem;
@@ -46,34 +66,29 @@ header {
     text-align: center;
     min-width: 200px;
     transition: all 0.3s ease;
-}
-
-.btn-primary {
-    background-color: #1a1f24;
+    background-color: #1a2429;
     color: #ffffff;
     border: 2px solid #2a3944;
-}
-
-.btn-secondary {
-    background-color: #1a1f24;
-    color: #ffffff;
-    border: 2px solid #2a3944;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1.2rem;
 }
 
 .btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 /* Section Titles */
 .section-title {
+    font-family: 'Staatliches', cursive;
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin: 3rem 0;
     text-transform: uppercase;
     letter-spacing: 3px;
     color: #ffffff;
     position: relative;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .section-title::after {
@@ -91,25 +106,37 @@ header {
 }
 
 .lore-card {
-    background-color: rgba(25, 35, 40, 0.8);
+    background-color: rgba(25, 35, 40, 0.7);
     border-radius: 10px;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.lore-card-small {
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.lore-image {
+    flex: 1;
 }
 
 .lore-image img {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
-    border-bottom: 2px solid #3a4a54;
 }
 
 .lore-text {
+    flex: 1;
     padding: 2rem;
     font-size: 1.2rem;
-    text-align: center;
     line-height: 1.8;
+    display: flex;
+    align-items: center;
 }
 
 /* Token Info Section */
@@ -132,12 +159,13 @@ header {
     border-radius: 10px;
     padding: 2rem;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
 .info-card h3 {
+    font-family: 'Staatliches', cursive;
     margin: 1rem 0;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
 }
 
 .info-card p {
@@ -166,6 +194,8 @@ header {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
 }
 
 .step-card {
@@ -175,7 +205,10 @@ header {
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 .step-number {
@@ -190,8 +223,9 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Staatliches', cursive;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     z-index: 1;
 }
 
@@ -202,9 +236,11 @@ header {
 }
 
 .step-card p {
+    font-family: 'Staatliches', cursive;
     padding: 1.5rem;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    margin-top: auto;
 }
 
 /* Gallery Section */
@@ -213,8 +249,10 @@ header {
 }
 
 .subtitle {
+    font-family: 'Staatliches', cursive;
     font-weight: normal;
     font-style: italic;
+    font-size: 1.8rem;
 }
 
 .gallery-container {
@@ -224,21 +262,288 @@ header {
     margin-top: 2rem;
 }
 
+/* TikTok Gallery Section */
+.tiktok-section {
+    margin: 4rem 0;
+}
+
+.tiktok-gallery {
+    position: relative;
+    max-width: 360px;
+    margin: 0 auto;
+    height: 640px;
+    overflow: hidden;
+    background-color: rgba(25, 35, 40, 0.7);
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 10px solid #1a1a1a;
+    box-sizing: content-box;
+}
+
+.tiktok-slider {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar for Firefox */
+}
+
+.tiktok-slider::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
+.tiktok-slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+.tiktok-embed {
+    max-width: 100% !important;
+    margin: 0 !important;
+    height: 100% !important;
+}
+
+/* Phone notch styling */
+.tiktok-gallery::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 20px;
+    background-color: #1a1a1a;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 20;
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    right: 20px;
+    color: white;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+}
+
+.scroll-text {
+    font-family: 'Staatliches', cursive;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.scroll-arrow {
+    font-size: 1.5rem;
+    animation: bounce 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.4; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 1rem;
+    }
+    
     .token-info {
         flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .info-card {
+        min-width: unset;
+        width: 280px;
+        max-width: 100%;
     }
     
     .header-buttons {
         flex-direction: column;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .btn {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .logo {
+        max-width: 200px;
+        margin-bottom: 1rem;
     }
     
     .lore-card {
         flex-direction: column;
     }
     
+    .lore-card-small {
+        max-width: 100%;
+    }
+    
+    .steps-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        width: 100%;
+        grid-template-columns: unset;
+    }
+    
+    .step-card {
+        width: 280px;
+        max-width: 100%;
+    }
+    
+    .tiktok-gallery {
+        max-width: 300px;
+        height: 540px;
+        border-width: 8px;
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
+        right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1rem 0;
+        gap: 1rem;
+    }
+    
+    .logo {
+        max-width: 150px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+        margin: 1.5rem 0;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+        display: block;
+        margin-top: 0.3rem;
+    }
+    
+    .lore-section, 
+    .how-to-buy-section, 
+    .steps-section, 
+    .gallery-section, 
+    .tiktok-section {
+        margin: 2rem 0;
+    }
+    
+    .lore-text {
+        padding: 1rem;
+        line-height: 1.5;
+    }
+    
+    .info-card {
+        padding: 1rem;
+    }
+    
+    .icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .info-card h3 {
+        margin: 0.5rem 0;
+        font-size: 1.3rem;
+    }
+    
+    .info-card p {
+        font-size: 1.2rem;
+    }
+    
+    .steps-container {
+        width: 100%;
+    }
+    
+    .step-card {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .info-card {
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .tiktok-gallery {
+        border-width: 5px;
+        max-width: 280px;
+        height: 500px;
+    }
+    
+    /* Add touch-friendly padding to all interactive elements */
+    .btn, 
+    .step-card, 
+    .scroll-indicator {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Fix for iOS overscroll effect */
+    html, body {
+        position: relative;
+        overflow-x: hidden;
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Fix for older iPhones */
+@media (max-width: 375px) {
+    .tiktok-gallery {
+        max-width: 260px;
+        height: 460px;
+    }
+    
     .section-title {
         font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1rem;
+        font-size: 1rem;
+    }
+    
+    .scroll-indicator {
+        bottom: 15px;
+        right: 10px;
+    }
+    
+    .scroll-text {
+        font-size: 1rem;
     }
 } 
