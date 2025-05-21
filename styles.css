@@ -5,20 +5,55 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Roboto Mono', monospace;
-    background-color: #121a1f;
+    background-color: #0a0e11;
     color: #e6e6e6;
     line-height: 1.6;
-    background-image: url('media/bg.png');
-    background-size: cover;
-    background-attachment: fixed;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('media/smoke.png');
+    background-size: 50%;
+    background-position: center;
+    background-repeat: repeat;
+    opacity: 0.2;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero Section */
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('media/bg.png');
+    background-size: cover;
+    background-position: center 0;
+    background-repeat: no-repeat;
+    z-index: 0;
+    animation: fadeIn 1.5s ease-in-out;
 }
 
 /* Header Styles */
@@ -29,6 +64,47 @@ header {
     align-items: center;
     justify-content: center;
     gap: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(26, 36, 41, 0.7);
+    border: 2px solid #3a4a54;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.social-icon:hover {
+    transform: translateY(-5px) rotate(12deg);
+    background-color: #2a3944;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+    color: #f0c66e;
+    border-color: #f0c66e;
+}
+
+.social-icon i {
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover i {
+    animation: pulse 1s infinite;
 }
 
 .logo {
@@ -41,6 +117,7 @@ header {
     height: auto;
     filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.5));
     transition: transform 0.3s ease;
+    animation: float 6s ease-in-out infinite;
 }
 
 .logo img:hover {
@@ -71,11 +148,31 @@ header {
     border: 2px solid #2a3944;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     font-size: 1.2rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+}
+
+.btn:hover::after {
+    animation: ripple 1s ease-out;
 }
 
 /* Section Titles */
@@ -88,7 +185,8 @@ header {
     letter-spacing: 3px;
     color: #ffffff;
     position: relative;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 .section-title::after {
@@ -96,13 +194,16 @@ header {
     display: block;
     width: 100px;
     height: 3px;
-    background-color: #3a4a54;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
     margin: 0.5rem auto;
 }
 
 /* Lore Section */
 .lore-section {
-    margin: 4rem 0;
+    position: relative;
+    margin: 6rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .lore-card {
@@ -112,6 +213,30 @@ header {
     display: flex;
     flex-direction: row;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.lore-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.lore-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lore-card:hover::before {
+    opacity: 1;
 }
 
 .lore-card-small {
@@ -141,7 +266,10 @@ header {
 
 /* Token Info Section */
 .how-to-buy-section {
-    margin: 4rem 0;
+    position: relative;
+    margin: 6rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .token-info {
@@ -160,6 +288,30 @@ header {
     padding: 2rem;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.info-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.info-card:hover::before {
+    opacity: 1;
 }
 
 .info-card h3 {
@@ -187,7 +339,10 @@ header {
 
 /* Steps Section */
 .steps-section {
-    margin: 4rem 0;
+    position: relative;
+    margin: 6rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .steps-container {
@@ -209,6 +364,30 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.1), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.step-card:hover::before {
+    opacity: 1;
 }
 
 .step-number {
@@ -245,7 +424,10 @@ header {
 
 /* Gallery Section */
 .gallery-section {
-    margin: 4rem 0;
+    position: relative;
+    margin: 6rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .subtitle {
@@ -264,7 +446,10 @@ header {
 
 /* TikTok Gallery Section */
 .tiktok-section {
-    margin: 4rem 0;
+    position: relative;
+    margin: 6rem 0;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .tiktok-gallery {
@@ -278,6 +463,28 @@ header {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
     border: 10px solid #1a1a1a;
     box-sizing: content-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.tiktok-gallery:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+}
+
+.tiktok-gallery::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 20px;
+    background-color: #1a1a1a;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 20;
 }
 
 .tiktok-slider {
@@ -306,21 +513,6 @@ header {
     max-width: 100% !important;
     margin: 0 !important;
     height: 100% !important;
-}
-
-/* Phone notch styling */
-.tiktok-gallery::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 20px;
-    background-color: #1a1a1a;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    z-index: 20;
 }
 
 /* Scroll indicator */
@@ -358,6 +550,56 @@ header {
     0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
     40% { transform: translateY(-10px); }
     60% { transform: translateY(-5px); }
+}
+
+/* Enhanced hover effect for all interactive elements */
+a, button, .btn, .step-card, .info-card, .lore-card {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 0;
+        transform: scale(40, 40);
+    }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Add subtle text highlight for important content */
+.lore-text p {
+    position: relative;
+    z-index: 1;
+}
+
+.lore-text p::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(240, 198, 110, 0.3), transparent);
+    z-index: -1;
 }
 
 /* Responsive Design */
@@ -398,6 +640,16 @@ header {
         margin-bottom: 1rem;
     }
     
+    .social-icons {
+        gap: 1rem;
+    }
+    
+    .social-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
     .lore-card {
         flex-direction: column;
     }
@@ -430,6 +682,11 @@ header {
         bottom: 20px;
         right: 15px;
     }
+    
+    .hero-bg {
+        background-size: 150%;
+        background-position: 50% 0;
+    }
 }
 
 @media (max-width: 480px) {
@@ -440,6 +697,16 @@ header {
     
     .logo {
         max-width: 150px;
+    }
+    
+    .social-icons {
+        gap: 0.8rem;
+    }
+    
+    .social-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
     }
     
     .section-title {
